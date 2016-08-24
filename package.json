@@ -1,0 +1,31 @@
+{
+  "name": "@lohsy84/request-util",
+  "version": "0.0.1",
+  "description": "HTTP Request Utility that uses Bluebird Promises",
+  "main": "index.js",
+  "scripts": {
+    "jsdoc": "node_modules/.bin/jsdoc --configure jsdoc.conf ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Samuel Loh Yin Kang <samuel.loh.yk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "cookie": "^0.3.1",
+    "lodash": "^4.15.0",
+    "qs": "^6.2.1",
+    "sprintf-js": "^1.0.3",
+    "superagent": "^2.2.0"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.4.0"
+  },
+  "bugs": {
+    "url": "https://github.com/samloh84/node-request-util/issues",
+    "email": "samuel.loh.yk@gmail.com"
+  },
+  "repository": {
+    "url": "https://github.com/samloh84/node-request-util",
+    "type": "git"
+  }
+}
