@@ -1,1 +1,1 @@
-HTTP Request Utility that uses Bluebird Promises
+HTTP Request Utility that wraps Superagent and uses Bluebird Promises
