@@ -1,6 +1,6 @@
 {
   "name": "@lohsy84/request-util",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "HTTP Request Utility that uses Bluebird Promises",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "superagent": "^2.2.0"
   },
   "devDependencies": {
+    "jasmine": "^2.5.0",
     "jsdoc": "^3.4.0"
   },
   "bugs": {
