@@ -6,6 +6,8 @@ const chai = require('chai');
 const expect = chai.expect;
 const RequestUtil = require('../lib/RequestUtil');
 const _ = require('lodash');
+const CommonUtils = require('@lohsy84/common-utils');
+const FileUtil = CommonUtils.FileUtil;
 
 
 describe('RequestUtil', function () {
@@ -50,6 +52,33 @@ describe('RequestUtil', function () {
                 .then(function (response) {
                     expect(response.status).to.equal(200);
                     expect(response.body.data.data).to.equal(1);
+                });
+        });
+    });
+
+
+    describe('should be able to download file', function () {
+        it('for a single URL', function () {
+            return RequestUtil.request({url: 'http://httpbin.org/image/jpeg', savePath: 'downloads/jpeg.jpg', method: 'get'})
+                .then(function (response) {
+                    //console.log(response.status);
+                    return FileUtil.stat({path: 'downloads/jpeg.jpg'})
+                        .then(function (stats) {
+                            expect(stats).not.to.be.undefined;
+                            expect(stats.size).to.equal(35588);
+                        });
+                });
+        });
+
+        it('for a single URL', function () {
+            return RequestUtil.request({url: 'http://httpbin.org/image/jpeg', savePath: 'downloads/', method: 'get'})
+                .then(function (response) {
+                    //console.log(response.status);
+                    return FileUtil.stat({path: 'downloads/jpeg'})
+                        .then(function (stats) {
+                            expect(stats).not.to.be.undefined;
+                            expect(stats.size).to.equal(35588);
+                        });
                 });
         });
     });

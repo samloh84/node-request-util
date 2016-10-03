@@ -1,6 +1,6 @@
 {
   "name": "@lohsy84/request-util",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "HTTP Request Utility that uses Superagent and Bluebird Promises",
   "main": "index.js",
   "scripts": {
