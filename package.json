@@ -1,7 +1,7 @@
 {
   "name": "@lohsy84/request-util",
   "version": "0.0.3",
-  "description": "HTTP Request Utility that uses Bluebird Promises",
+  "description": "HTTP Request Utility that uses Superagent and Bluebird Promises",
   "main": "index.js",
   "scripts": {
     "jsdoc": "node_modules/.bin/jsdoc --configure jsdoc.conf ./",
