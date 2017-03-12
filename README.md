@@ -1,1 +1,1 @@
-HTTP Request Utility that wraps Superagent and uses Bluebird Promises
+HTTP/S Request Utility that wraps Node.js HTTP and HTTPS request methods in Bluebird Promises.

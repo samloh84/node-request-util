@@ -1,27 +1,26 @@
 {
   "name": "@lohsy84/request-util",
-  "version": "0.0.9",
-  "description": "HTTP Request Utility that uses Superagent and Bluebird Promises",
+  "version": "1.0.0",
+  "description": "HTTP/S Request Utility that wraps Node.js HTTP and HTTPS request methods in Bluebird Promises.",
   "main": "index.js",
   "scripts": {
     "jsdoc": "node_modules/.bin/jsdoc --configure jsdoc.conf ./",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/mocha"
   },
   "author": "Samuel Loh Yin Kang <samuel.loh.yk@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@lohsy84/common-utils": "0.0.6",
-    "bluebird": "^3.4.1",
-    "cookie": "^0.3.1",
-    "lodash": "^4.15.0",
-    "qs": "^6.2.1",
-    "sprintf-js": "^1.0.3",
-    "superagent": "^2.2.0"
+    "bluebird": "^3.4.7",
+    "form-data": "^2.1.2",
+    "formidable": "^1.1.1",
+    "lodash": "^4.17.4",
+    "qs": "^6.3.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "jsdoc": "^3.4.0",
-    "mocha": "^3.1.0"
+    "chai-as-promised": "^6.0.0",
+    "mocha": "^3.2.0",
+    "jsdoc": "^3.4.3"
   },
   "bugs": {
     "url": "https://github.com/samloh84/node-request-util/issues",
