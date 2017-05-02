@@ -1,99 +1,121 @@
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 const util = require('util');
-const HttpUtil = require('../lib');
+const RequestUtil = require('../lib');
 
 
 chai.use(chaiAsPromised);
 
 chai.should();
 
-describe("HttpUtil", function () {
+chai.config.includeStack = true;
 
-    it("should be able to perform a HTTP GET on http://httpbin.org/get", function (done) {
 
-        return HttpUtil.request({url: "https://httpbin.org/get"})
-            .should.be.fulfilled
+describe("RequestUtil", function () {
+
+    it("should be able to perform a HTTP GET on https://httpbin.org/get", function () {
+
+        return RequestUtil.request({url: "https://httpbin.org/get"})
             .then(function (res) {
                 res.statusCode.should.equal(200);
                 console.log(util.inspect(res, {depth: null}));
-            })
-            .should.notify(done);
+            });
     });
 
-    it("should be able to perform a HTTP GET on http://httpbin.org/get with query data", function (done) {
-
-
-        return HttpUtil.request({url: "https://httpbin.org/get", query: {a: 'abc', b: 'def'}})
-            .should.be.fulfilled
+    it("should be able to perform a HTTP GET on https://httpbin.org/get with query data", function () {
+        return RequestUtil.request({url: "https://httpbin.org/get", query: {a: 'abc', b: 'def'}})
             .then(function (res) {
                 res.statusCode.should.equal(200);
+                res.body.args.should.have.property('a');
+                res.body.args.should.have.property('b');
                 res.body.args.a.should.equal('abc');
                 res.body.args.b.should.equal('def');
 
                 console.log(util.inspect(res, {depth: null}));
-            })
-            .should.notify(done);
+            });
     });
 
-    it("should be able to perform a HTTP GET on http://httpbin.org/get with additional query data", function (done) {
+    it("should be able to perform a HTTP GET on https://httpbin.org/get with additional query data", function () {
 
-        return HttpUtil.request({url: "https://httpbin.org/get?a=abc&b=def", query: {c: 'ghi', d: 'jkl'}})
-            .should.be.fulfilled
+        return RequestUtil.request({url: "https://httpbin.org/get?a=abc&b=def", query: {c: 'ghi', d: 'jkl'}})
             .then(function (res) {
                 res.statusCode.should.equal(200);
+                res.body.args.should.have.property('a');
+                res.body.args.should.have.property('b');
+                res.body.args.should.have.property('c');
+                res.body.args.should.have.property('d');
                 res.body.args.a.should.equal('abc');
                 res.body.args.b.should.equal('def');
                 res.body.args.c.should.equal('ghi');
                 res.body.args.d.should.equal('jkl');
 
                 console.log(util.inspect(res, {depth: null}));
-            })
-            .should.notify(done);
+            });
     });
 
-    it("should be able to perform a HTTP GET on http://httpbin.org/get with url-encoded data", function (done) {
 
-        return HttpUtil.request({
+    it("should be able to perform a HTTP POST on https://httpbin.org/post with JSON payload", function () {
+
+        return RequestUtil.request({
+            url: "https://httpbin.org/post",
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            data: {a: 'abc', b: 'def'}
+        })
+            .then(function (res) {
+                res.statusCode.should.equal(200);
+                res.body.json.should.have.property('a');
+                res.body.json.should.have.property('b');
+                res.body.json.a.should.equal('abc');
+                res.body.json.b.should.equal('def');
+
+                console.log(util.inspect(res, {depth: null}));
+            });
+    });
+
+
+    it("should be able to perform a HTTP POST on https://httpbin.org/post with url-encoded payload", function () {
+
+        return RequestUtil.request({
             url: "https://httpbin.org/post",
             method: 'post',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: {a: 'abc', b: 'def'}
         })
-            .should.be.fulfilled
             .then(function (res) {
                 res.statusCode.should.equal(200);
+                res.body.form.should.have.property('a');
+                res.body.form.should.have.property('b');
                 res.body.form.a.should.equal('abc');
                 res.body.form.b.should.equal('def');
 
                 console.log(util.inspect(res, {depth: null}));
-            })
-            .should.notify(done);
+            });
     });
 
-    it("should be able to perform a HTTP POST on http://httpbin.org/post with multipart data", function (done) {
+    it("should be able to perform a HTTP POST on https://httpbin.org/post with multipart payload", function () {
 
-        return HttpUtil.request({
+        return RequestUtil.request({
             url: "https://httpbin.org/post",
             method: 'post',
             headers: {'Content-Type': 'multipart/form-data'},
             data: {a: 'abc', b: 'def'}
         })
-            .should.be.fulfilled
             .then(function (res) {
                 res.statusCode.should.equal(200);
+                res.body.form.should.have.property('a');
+                res.body.form.should.have.property('b');
                 res.body.form.a.should.equal('abc');
                 res.body.form.b.should.equal('def');
 
                 console.log(util.inspect(res, {depth: null}));
-            })
-            .should.notify(done);
+            });
     });
 
 
-    it("should be able to perform a HTTP POST on http://httpbin.org/post with multipart data and file attachment", function (done) {
+    it("should be able to perform a HTTP POST on https://httpbin.org/post with multipart data and file attachment", function () {
 
-        return HttpUtil.request({
+        return RequestUtil.request({
             url: "https://httpbin.org/post",
             method: 'post',
             headers: {'Content-Type': 'multipart/form-data'},
@@ -102,32 +124,33 @@ describe("HttpUtil", function () {
                 xyz: {stream: new Buffer("abcdef", 'utf8'), filename: 'abc.txt'}
             }
         })
-            .should.be.fulfilled
             .then(function (res) {
                 res.statusCode.should.equal(200);
+                res.body.form.should.have.property('a');
+                res.body.form.should.have.property('b');
                 res.body.form.a.should.equal('abc');
                 res.body.form.b.should.equal('def');
+                res.body.files.should.have.property('xyz');
                 res.body.files.xyz.should.equal('abcdef');
 
                 console.log(util.inspect(res, {depth: null}));
-            })
-            .should.notify(done);
+            });
     });
 
 
-    it("should be able to follow redirects", function (done) {
-
-        return HttpUtil.request({
-            url: "http://httpbin.org/redirect/6",
+    it("should be able to follow redirects", function () {
+        this.timeout(10000);
+        return RequestUtil.request({
+            url: "https://httpbin.org/redirect/3",
             method: 'get'
         })
-            .should.be.fulfilled
             .then(function (res) {
                 res.statusCode.should.equal(200);
+                res.should.have.property('redirects');
+                res.redirects.length.should.equal(3);
 
                 console.log(util.inspect(res, {depth: null}));
-            })
-            .should.notify(done);
+            });
     });
 
 });
