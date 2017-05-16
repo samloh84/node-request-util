@@ -4,7 +4,7 @@
   "description": "HTTP/S Request Utility that wraps Node.js HTTP and HTTPS request methods in Bluebird Promises.",
   "main": "index.js",
   "scripts": {
-    "jsdoc": "node_modules/.bin/jsdoc --configure jsdoc.conf ./",
+    "jsdoc": "node_modules/.bin/jsdoc --configure jsdoc.conf.json ./",
     "test": "node_modules/.bin/mocha"
   },
   "author": "Samuel Loh Yin Kang <samuel.loh.yk@gmail.com>",
@@ -19,6 +19,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
+    "ink-docstrap": "^1.3.0",
     "jsdoc": "^3.4.3",
     "mocha": "^3.3.0"
   },

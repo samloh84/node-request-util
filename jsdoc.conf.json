@@ -1,0 +1,43 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": [
+      "jsdoc",
+      "closure"
+    ]
+  },
+  "source": {
+    "includePattern": ".+\\.js(doc)?$",
+    "excludePattern": "(^|\\/|\\\\)_",
+    "exclude": [
+      "node_modules"
+    ]
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "templates": {
+    "systemName": "@lohsy84/request-util",
+    "footer": "Licensed under the MIT License (MIT)",
+    "copyright": "Copyright (c) 2017 Samuel Loh Yin Kang",
+    "includeDate": true,
+    "navType": "vertical",
+    "theme": "spacelab",
+    "linenums": true,
+    "collapseSymbols": true,
+    "inverseNav": false,
+    "outputSourceFiles": true,
+    "outputSourcePath": true,
+    "dateFormat": "DD MM YYYY HH:mm:ss A zz Z",
+    "syntaxTheme": "default",
+    "sort": true,
+    "search": true
+  },
+  "opts": {
+    "template": "./node_modules/ink-docstrap/template",
+    "destination": "./docs/",
+    "package": "./package.json",
+    "readme": "./README.md",
+    "recurse": true
+  }
+}
