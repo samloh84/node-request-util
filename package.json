@@ -1,6 +1,6 @@
 {
   "name": "@lohsy84/request-util",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "HTTP/S Request Utility that wraps Node.js HTTP and HTTPS request methods in Bluebird Promises.",
   "main": "index.js",
   "scripts": {
